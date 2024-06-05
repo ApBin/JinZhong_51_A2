@@ -10,14 +10,13 @@ void main()
     LCD_Init();
     DS1302_Init();
     LCD_ShowString(1,1,"RTC");
-
-    DS1302_WriteByte(0x8e,0x00);
-    DS1302_WriteByte(0x80,0x03);
-   
+    DS1302_WriteByte(0x8E,0x00);
+    
+    DS1302_WriteByte(0x80,0x07);
     while(1)
     {
         Second=DS1302_ReadByte(0x81);
-        LCD_ShowNum(2,1,Second,3);
+        LCD_ShowNum(2,1,Second/16*10+Second%16,3);
         Delay(50);
     }
 }

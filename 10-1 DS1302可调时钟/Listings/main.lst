@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   MAIN                                                                  05/24/2024 23:35:32 PAGE 1   
+C51 COMPILER V9.54   MAIN                                                                  05/24/2024 23:57:29 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
@@ -20,21 +20,20 @@ line level    source
   10   1          LCD_Init();
   11   1          DS1302_Init();
   12   1          LCD_ShowString(1,1,"RTC");
-  13   1      
-  14   1          DS1302_WriteByte(0x8e,0x00);
-  15   1          DS1302_WriteByte(0x80,0x03);
-  16   1         
-  17   1          while(1)
-  18   1          {
-  19   2              Second=DS1302_ReadByte(0x81);
-  20   2              LCD_ShowNum(2,1,Second,3);
-  21   2              Delay(50);
-  22   2          }
-  23   1      }
+  13   1          DS1302_WriteByte(0x8E,0x00);
+  14   1          
+  15   1          DS1302_WriteByte(0x80,0x07);
+  16   1          while(1)
+  17   1          {
+  18   2              Second=DS1302_ReadByte(0x81);
+  19   2              LCD_ShowNum(2,1,Second/16*10+Second%16,3);
+  20   2              Delay(50);
+  21   2          }
+  22   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     66    ----
+   CODE SIZE        =     84    ----
    CONSTANT SIZE    =      4    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
